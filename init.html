@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Prueba</title>
+  </head>
+  <body>
+	<div class="field">
+		<p class="buttons is-centered">
+			<button id="btnentercode" class="button is-link">Entrar</button>
+		</p>
+	</div>
+	<script src="sclogin.js"></script>
+	<script type="text/javascript">
+		//habilitar parametros que permitan definir idapp, apikey, secretkey para obtener el ID de la sesión (el que fue enviado por correo)
+		//La sesión se cierra al salir del navegador
+		SC.disconnect();
+		SC.check({
+			'idapp':'345345345345345',
+			'apikey':'azsdvzxdfty456rggfjhk68678678678',
+			'secretkey':'xcvbxvbxcvbxcvbdfgdffjgjgjtyutyutyutyu'
+		});
+	</script>
+  </body>
+</html>
