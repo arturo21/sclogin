@@ -30,7 +30,7 @@
 ## Cerrar Sesión
 ```javascript
 		genrl.run(function(){
-			SC.logout();
+			SC.disconnect();
 		});
 ```
 
