@@ -1,4 +1,4 @@
-# general.js
+# SCLogin.js
 
 **Capa de funciones para inicio de sesión / registro e interactividad con el sistema ligada a General.JS**
 
@@ -29,6 +29,13 @@
 		});
 ```
 
+## Cerrar Sesión
+```javascript
+		genrl.run(function(){
+			SC.logout();
+		});
+```
+
 ## Mostrar form de inicio de sesión
 ```javascript
 		genrl.run(function(){
@@ -44,3 +51,4 @@
 ## if do you like to to collab, you can do it by clicking the link below:
 ## --Paypal-- 
 [![paypal-btn-image-pay](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/paypalme/avsolucionesweb)
+
