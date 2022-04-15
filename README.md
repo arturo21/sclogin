@@ -1,6 +1,6 @@
 # SCLogin.js
 
-**Capa de funciones para inicio de sesión / registro e interactividad con el sistema ligada a General.JS**
+**Capa de abstracción para inicio de sesión / registro e interactividad con el sistema ligada a General.JS**
 
 ## Import library from CDN
 ```html
@@ -17,8 +17,6 @@
 				'scriptid':'#formsblock',
 				'frmcontid':'#scriptlogin'
 			});
-			SC.check();
-			SC.getLoginMinimal();
 		});
 ```
 
