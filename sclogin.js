@@ -18,150 +18,150 @@ ajaxapi=(function(global,factory){
 		xmlhttp = new XMLHttpRequest();
 		return xmlhttp;
 	};
-return{
-    getAjax:function(){
-		let sockajax=getSocket();
-		return sockajax;
-  	},
-	load:function(url){
-		let options;
-		let respjson;
-		let objeto;
-		let x,y,valor,indice;
-		var params = "action=load";
-		bitget=0;
-		bitpost=0;
-		bitgetjson=0;
-		bitupload=0;
-		bitload=1;
-		if(bitload==1){
-			console.log("BITLOAD=1");
-			ajax_.open("GET", url, true);
-			ajax_.send(null);
+	return{
+		getAjax:function(){
+			let sockajax=getSocket();
+			return sockajax;
+	  	},
+		load:function(url){
+			let options;
+			let respjson;
+			let objeto;
+			let x,y,valor,indice;
+			var params = "action=load";
+			bitget=0;
+			bitpost=0;
+			bitgetjson=0;
+			bitupload=0;
+			bitload=1;
+			if(bitload==1){
+				console.log("BITLOAD=1");
+				ajax_.open("GET", url, true);
+				ajax_.send(null);
+				return this;
+			}
+		},
+	  	get:function(url){
+			let options;
+			let respjson;
+			let objeto;
+			let x,y,valor,indice;
+			var params = "action=get";
+			bitget=1;
+			bitpost=0;
+			bitgetjson=0;
+			bitupload=0;
+			bitload=0;
+			if(bitget==1){
+				console.log("BITGET=1");
+				ajax_.open("GET", url, true);
+				ajax_.send(null);
+				return this;
+			}
+	  	},
+	  	getJSON:function(url){
+			let options;
+			let respjson;
+			let objeto;
+			let x,y,valor,indice;
+			var params="action=getjson";
+			bitget=0;
+			bitpost=0;
+			bitgetxml=0;
+			bitgetjson=1;
+			bitupload=0;
+			bitload=0;
+			if(bitgetjson==1){
+				console.log("BITJSON=1");
+				ajax_.open("GET", url, true);
+				ajax_.send(null);
+				return this;
+			}
+	  	},
+	  	getXML:function(url){
+			let options;
+			let respjson;
+			let objeto;
+			let x,y,valor,indice;
+			var params="action=getxml";
+			bitget=0;
+			bitpost=0;
+			bitgetjson=0;
+			bitgetxml=1;
+			bitupload=0;
+			bitload=0;
+			if(bitgetxml==1){
+				console.log("BITXML=1");
+				ajax_.open("GET", url, true);
+				ajax_.send(null);
+				return this;
+			}
+	  	},
+	  	post:function(url,data){
+			let options;
+			let respjson;
+			let objeto;
+			let x,y,valor,indice;
+			protocol="post";
+			bitget=0;
+			bitpost=1;
+			bitgetjson=0;
+			bitupload=0;
+			bitload=0;
+			ajax_=getSocket();
+			ajax_.open("POST", url, true);
+			ajax_.response='json';
+			ajax_.send(data);
 			return this;
-		}
-	},
-  	get:function(url){
-		let options;
-		let respjson;
-		let objeto;
-		let x,y,valor,indice;
-		var params = "action=get";
-		bitget=1;
-		bitpost=0;
-		bitgetjson=0;
-		bitupload=0;
-		bitload=0;
-		if(bitget==1){
-			console.log("BITGET=1");
-			ajax_.open("GET", url, true);
-			ajax_.send(null);
+	  	},
+	  	upload:function(url,data){
+			let options;
+			let respjson;
+			let objeto;
+			let x,y,valor,indice;
+			protocol="post";
+			bitget=0;
+			bitpost=0;
+			bitgetjson=0;
+			bitupload=1;
+			bitload=0;
+			ajax_=getSocket();
+			ajax_.open("POST", url, true);
+			ajax_.response='text';
+			ajax_.send(data);
 			return this;
-		}
-  	},
-  	getJSON:function(url){
-		let options;
-		let respjson;
-		let objeto;
-		let x,y,valor,indice;
-		var params="action=getjson";
-		bitget=0;
-		bitpost=0;
-		bitgetxml=0;
-		bitgetjson=1;
-		bitupload=0;
-		bitload=0;
-		if(bitgetjson==1){
-			console.log("BITJSON=1");
-			ajax_.open("GET", url, true);
-			ajax_.send(null);
-			return this;
-		}
-  	},
-  	getXML:function(url){
-		let options;
-		let respjson;
-		let objeto;
-		let x,y,valor,indice;
-		var params="action=getxml";
-		bitget=0;
-		bitpost=0;
-		bitgetjson=0;
-		bitgetxml=1;
-		bitupload=0;
-		bitload=0;
-		if(bitgetxml==1){
-			console.log("BITXML=1");
-			ajax_.open("GET", url, true);
-			ajax_.send(null);
-			return this;
-		}
-  	},
-  	post:function(url,data){
-		let options;
-		let respjson;
-		let objeto;
-		let x,y,valor,indice;
-		protocol="post";
-		bitget=0;
-		bitpost=1;
-		bitgetjson=0;
-		bitupload=0;
-		bitload=0;
-		ajax_=getSocket();
-		ajax_.open("POST", url, true);
-		ajax_.response='json';
-		ajax_.send(data);
-		return this;
-  	},
-  	upload:function(url,data){
-		let options;
-		let respjson;
-		let objeto;
-		let x,y,valor,indice;
-		protocol="post";
-		bitget=0;
-		bitpost=0;
-		bitgetjson=0;
-		bitupload=1;
-		bitload=0;
-		ajax_=getSocket();
-		ajax_.open("POST", url, true);
-		ajax_.response='text';
-		ajax_.send(data);
-		return this;
-  	},
-	then:function(callback){
-		ajax_.onreadystatechange = function(){
-			if(ajax_.readyState==4){
-				if(ajax_.status==200){
-					if(bitgetjson==1 || bitgetxml==1){
-						if(bitgetjson==1){
-							datares = JSON.parse(ajax_.responseText);
+	  	},
+		then:function(callback){
+			ajax_.onreadystatechange = function(){
+				if(ajax_.readyState==4){
+					if(ajax_.status==200){
+						if(bitgetjson==1 || bitgetxml==1){
+							if(bitgetjson==1){
+								datares = JSON.parse(ajax_.responseText);
+							}
+							if(bitgetxml==1){
+								datares = ajax_.responseXML;
+							}
 						}
-						if(bitgetxml==1){
-							datares = ajax_.responseXML;
+						else{
+							datares = ajax_.responseText;
 						}
+						callback(datares);
+						return this;
 					}
 					else{
-						datares = ajax_.responseText;
+						errormessage=ajax_.statusText;
+						ajaxapi.catch(errormessage);
+						return this;
 					}
-					callback(datares);
-					return this;
 				}
-				else{
-					errormessage=ajax_.statusText;
-					ajaxapi.catch(errormessage);
-					return this;
-				}
-			}
-		};
-		return this;
-	},
-	catch:function(e){
-		console.log(e);
+			};
+			return this;
+		},
+		catch:function(e){
+			console.log(e);
+		}
 	}
-  }
 }(window));
 
 var genstore=(function(global,factory){
@@ -296,6 +296,7 @@ var SC=(function(global,factory){
 		loginBackend:function(datoslogin,callback){
 			//hacer una llamada a la api, que devuelva una cadena de texto
 			let fetchobj=ajaxapi;
+			let endpoint="sl/login"
 			let initdir="https://credentials.underdevelopment.work/api/credentials/v1/" + endpoint;
 			let datastr;
 			datastr=JSON.stringify(datoslogin);
@@ -363,7 +364,6 @@ var SC=(function(global,factory){
 			secretkey=genstore.getLocal('secretkey');
 			if(credentials){
 				if(idapp!='' && secretkey!='' && apikey!=''){
-					///api/credentials/v1/sl/loginsysconfig/<apikey>/<apisecret>/<idapp>
 					retlink="https://credentials.underdevelopment.work/api/credentials/v1/sl/signupsysconfig/" + apikey + "/" + secretkey + "/" +  idapp;
 					return retlink;
 				}
@@ -376,7 +376,6 @@ var SC=(function(global,factory){
 			secretkey=genstore.getLocal('secretkey');
 			if(credentials){
 				if(idapp!='' && secretkey!='' && apikey!=''){
-					///api/credentials/v1/sl/loginsysconfig/<apikey>/<apisecret>/<idapp>
 					retlink="https://credentials.underdevelopment.work/api/credentials/v1/sl/loginsysconfig/" + apikey + "/" + secretkey + "/" +  idapp;
 					return retlink;
 				}
@@ -396,6 +395,150 @@ var SC=(function(global,factory){
 					fetchobj=ajaxapi;
 					fetchobj
 					.post("https://credentials.underdevelopment.work/api/credentials/v1/sl/login_minimal",strdata)
+					.then(function(data){
+						g(scriptid).html(data);
+						g(frmcontid).eval(data);
+					})
+					.catch(function(e){	
+						SC.log("ERROR:" + e);
+					});
+				}
+			}
+			return 0;
+		},
+		getDevSignUp:function(){
+			idapp=genstore.getLocal('idapp');
+			apikey=genstore.getLocal('apikey');
+			secretkey=genstore.getLocal('secretkey');
+			scriptid=genstore.getLocal('scriptid');
+			frmcontid=genstore.getLocal('frmcontid');
+
+			if(credentials){
+				if(idapp!='' && secretkey!='' && apikey!=''){
+					let strdata="{\"api_key\":\"" + apikey + "\",\"secret_key\":\"" + secretkey + "\",\"app_id\":\"" + idapp + "\"}";
+					fetchobj=ajaxapi;
+					fetchobj
+					.post("https://credentials.underdevelopment.work/api/credentials/v1/sl/devsignup",strdata)
+					.then(function(data){
+						g(scriptid).html(data);
+						g(frmcontid).eval(data);
+					})
+					.catch(function(e){	
+						SC.log("ERROR:" + e);
+					});
+				}
+			}
+			return 0;
+		},
+		getNormalSignUp:function(){
+			idapp=genstore.getLocal('idapp');
+			apikey=genstore.getLocal('apikey');
+			secretkey=genstore.getLocal('secretkey');
+			scriptid=genstore.getLocal('scriptid');
+			frmcontid=genstore.getLocal('frmcontid');
+
+			if(credentials){
+				if(idapp!='' && secretkey!='' && apikey!=''){
+					let strdata="{\"api_key\":\"" + apikey + "\",\"secret_key\":\"" + secretkey + "\",\"app_id\":\"" + idapp + "\"}";
+					fetchobj=ajaxapi;
+					fetchobj
+					.post("https://credentials.underdevelopment.work/api/credentials/v1/sl/signupuser",strdata)
+					.then(function(data){
+						g(scriptid).html(data);
+						g(frmcontid).eval(data);
+					})
+					.catch(function(e){	
+						SC.log("ERROR:" + e);
+					});
+				}
+			}
+			return 0;
+		},
+		validUsr:function(){
+			idapp=genstore.getLocal('idapp');
+			apikey=genstore.getLocal('apikey');
+			secretkey=genstore.getLocal('secretkey');
+			scriptid=genstore.getLocal('scriptid');
+			frmcontid=genstore.getLocal('frmcontid');
+
+			if(credentials){
+				if(idapp!='' && secretkey!='' && apikey!=''){
+					let strdata="{\"api_key\":\"" + apikey + "\",\"secret_key\":\"" + secretkey + "\",\"app_id\":\"" + idapp + "\"}";
+					fetchobj=ajaxapi;
+					fetchobj
+					.post("https://credentials.underdevelopment.work/api/credentials/v1/validuser",strdata)
+					.then(function(data){
+						g(scriptid).html(data);
+						g(frmcontid).eval(data);
+					})
+					.catch(function(e){	
+						SC.log("ERROR:" + e);
+					});
+				}
+			}
+			return 0;
+		},
+		validSes:function(idsesion){
+			idapp=genstore.getLocal('idapp');
+			apikey=genstore.getLocal('apikey');
+			secretkey=genstore.getLocal('secretkey');
+			scriptid=genstore.getLocal('scriptid');
+			frmcontid=genstore.getLocal('frmcontid');
+
+			if(credentials){
+				if(idapp!='' && secretkey!='' && apikey!=''){
+					let strdata="{\"api_key\":\"" + apikey + "\",\"secret_key\":\"" + secretkey + "\",\"app_id\":\"" + idapp + "\"}";
+					fetchobj=ajaxapi;
+					fetchobj
+					.post("https://credentials.underdevelopment.work/api/credentials/v1/wapivalidsession",strdata)
+					.then(function(data){
+						g(scriptid).html(data);
+						g(frmcontid).eval(data);
+					})
+					.catch(function(e){	
+						SC.log("ERROR:" + e);
+					});
+				}
+			}
+			return 0;
+		},
+		validLink:function(){
+			idapp=genstore.getLocal('idapp');
+			apikey=genstore.getLocal('apikey');
+			secretkey=genstore.getLocal('secretkey');
+			scriptid=genstore.getLocal('scriptid');
+			frmcontid=genstore.getLocal('frmcontid');
+
+			if(credentials){
+				if(idapp!='' && secretkey!='' && apikey!=''){
+					let strdata="{\"api_key\":\"" + apikey + "\",\"secret_key\":\"" + secretkey + "\",\"app_id\":\"" + idapp + "\"}";
+					fetchobj=ajaxapi;
+					fetchobj
+					.post("https://credentials.underdevelopment.work/api/credentials/v1/validlink",strdata)
+					.then(function(data){
+						g(scriptid).html(data);
+						g(frmcontid).eval(data);
+					})
+					.catch(function(e){	
+						SC.log("ERROR:" + e);
+					});
+				}
+			}
+			return 0;
+		},
+		saveSession:function(){
+			idapp=genstore.getLocal('idapp');
+			apikey=genstore.getLocal('apikey');
+			secretkey=genstore.getLocal('secretkey');
+			scriptid=genstore.getLocal('scriptid');
+			frmcontid=genstore.getLocal('frmcontid');
+
+			if(credentials){
+				if(idapp!='' && secretkey!='' && apikey!=''){
+					let strdata="{\"api_key\":\"" + apikey + "\",\"secret_key\":\"" + secretkey + "\",\"app_id\":\"" + idapp + "\"}";
+					fetchobj=ajaxapi;
+					fetchobj
+					.post("https://credentials.underdevelopment.work/api/credentials/v1/sl/savesession",strdata)
 					.then(function(data){
 						g(scriptid).html(data);
 						g(frmcontid).eval(data);
