@@ -18,151 +18,150 @@ ajaxapi=(function(global,factory){
 		xmlhttp = new XMLHttpRequest();
 		return xmlhttp;
 	};
-	return{
-		getAjax:function(){
-			let sockajax=getSocket();
-			return sockajax;
-	  	},
-		load:function(url){
-			let options;
-			let respjson;
-			let objeto;
-			let x,y,valor,indice;
-			var params = "action=load";
-			bitget=0;
-			bitpost=0;
-			bitgetjson=0;
-			bitupload=0;
-			bitload=1;
-			if(bitload==1){
-				console.log("BITLOAD=1");
-				ajax_.open("GET", url, true);
-				ajax_.send(null);
-				return this;
-			}
-		},
-	  	get:function(url){
-			let options;
-			let respjson;
-			let objeto;
-			let x,y,valor,indice;
-			var params = "action=get";
-			bitget=1;
-			bitpost=0;
-			bitgetjson=0;
-			bitupload=0;
-			bitload=0;
-			if(bitget==1){
-				console.log("BITGET=1");
-				ajax_.open("GET", url, true);
-				ajax_.send(null);
-				return this;
-			}
-	  	},
-	  	getJSON:function(url){
-			let options;
-			let respjson;
-			let objeto;
-			let x,y,valor,indice;
-			var params="action=getjson";
-			bitget=0;
-			bitpost=0;
-			bitgetxml=0;
-			bitgetjson=1;
-			bitupload=0;
-			bitload=0;
-			if(bitgetjson==1){
-				console.log("BITJSON=1");
-				ajax_.open("GET", url, true);
-				ajax_.send(null);
-				return this;
-			}
-	  	},
-	  	getXML:function(url){
-			let options;
-			let respjson;
-			let objeto;
-			let x,y,valor,indice;
-			var params="action=getxml";
-			bitget=0;
-			bitpost=0;
-			bitgetjson=0;
-			bitgetxml=1;
-			bitupload=0;
-			bitload=0;
-			if(bitgetxml==1){
-				console.log("BITXML=1");
-				ajax_.open("GET", url, true);
-				ajax_.send(null);
-				return this;
-			}
-	  	},
-	  	post:function(url,data){
-			let options;
-			let respjson;
-			let objeto;
-			let x,y,valor,indice;
-			protocol="post";
-			bitget=0;
-			bitpost=1;
-			bitgetjson=0;
-			bitupload=0;
-			bitload=0;
-			ajax_=getSocket();
-			ajax_.open("POST", url, true);
-			ajax_.response='json';
-			ajax_.send(data);
+return{
+    getAjax:function(){
+		let sockajax=getSocket();
+		return sockajax;
+  	},
+	load:function(url){
+		let options;
+		let respjson;
+		let objeto;
+		let x,y,valor,indice;
+		var params = "action=load";
+		bitget=0;
+		bitpost=0;
+		bitgetjson=0;
+		bitupload=0;
+		bitload=1;
+		if(bitload==1){
+			console.log("BITLOAD=1");
+			ajax_.open("GET", url, true);
+			ajax_.send(null);
 			return this;
-	  	},
-	  	upload:function(url,data){
-			let options;
-			let respjson;
-			let objeto;
-			let x,y,valor,indice;
-			protocol="post";
-			bitget=0;
-			bitpost=0;
-			bitgetjson=0;
-			bitupload=1;
-			bitload=0;
-			ajax_=getSocket();
-			ajax_.open("POST", url, true);
-			ajax_.response='text';
-			ajax_.send(data);
+		}
+	},
+  	get:function(url){
+		let options;
+		let respjson;
+		let objeto;
+		let x,y,valor,indice;
+		var params = "action=get";
+		bitget=1;
+		bitpost=0;
+		bitgetjson=0;
+		bitupload=0;
+		bitload=0;
+		if(bitget==1){
+			console.log("BITGET=1");
+			ajax_.open("GET", url, true);
+			ajax_.send(null);
 			return this;
-	  	},
-		then:function(callback){
-			ajax_.onreadystatechange = function(){
-				if(ajax_.readyState==4){
-					if(ajax_.status==200){
-						if(bitgetjson==1 || bitgetxml==1){
-							if(bitgetjson==1){
-								datares = JSON.parse(ajax_.responseText);
-							}
-							if(bitgetxml==1){
-								datares = ajax_.responseXML;
-							}
-						}
-						else{
-							datares = ajax_.responseText;
-						}
-						callback(datares);
-						return this;
+		}
+  	},
+  	getJSON:function(url){
+		let options;
+		let respjson;
+		let objeto;
+		let x,y,valor,indice;
+		var params="action=getjson";
+		bitget=0;
+		bitpost=0;
+		bitgetxml=0;
+		bitgetjson=1;
+		bitupload=0;
+		bitload=0;
+		if(bitgetjson==1){
+			console.log("BITJSON=1");
+			ajax_.open("GET", url, true);
+			ajax_.send(null);
+			return this;
+		}
+  	},
+  	getXML:function(url){
+		let options;
+		let respjson;
+		let objeto;
+		let x,y,valor,indice;
+		var params="action=getxml";
+		bitget=0;
+		bitpost=0;
+		bitgetjson=0;
+		bitgetxml=1;
+		bitupload=0;
+		bitload=0;
+		if(bitgetxml==1){
+			console.log("BITXML=1");
+			ajax_.open("GET", url, true);
+			ajax_.send(null);
+			return this;
+		}
+  	},
+  	post:function(url,data){
+		let options;
+		let respjson;
+		let objeto;
+		let x,y,valor,indice;
+		protocol="post";
+		bitget=0;
+		bitpost=1;
+		bitgetjson=0;
+		bitupload=0;
+		bitload=0;
+		ajax_=getSocket();
+		ajax_.open("POST", url, true);
+		ajax_.response='json';
+		ajax_.send(data);
+		return this;
+  	},
+  	upload:function(url,data){
+		let options;
+		let respjson;
+		let objeto;
+		let x,y,valor,indice;
+		protocol="post";
+		bitget=0;
+		bitpost=0;
+		bitgetjson=0;
+		bitupload=1;
+		bitload=0;
+		ajax_=getSocket();
+		ajax_.open("POST", url, true);
+		ajax_.response='text';
+		ajax_.send(data);
+		return this;
+  	},
+	then:function(callback){
+		ajax_.onreadystatechange = function(){
+			if(ajax_.readyState==4 && ajax_.status==200){
+				if(bitgetjson==1 || bitgetxml==1){
+					if(bitgetjson==1){
+						datares = JSON.parse(ajax_.responseText);
 					}
-					else{
-						errormessage=ajax_.statusText;
-						ajaxapi.catch(errormessage);
-						return this;
+					if(bitgetxml==1){
+						datares = ajax_.responseXML;
 					}
 				}
-			};
-			return this;
-		},
-		catch:function(e){
-			console.log(e);
-		}
+				else{
+					datares = ajax_.responseText;
+				}
+				callback(datares);
+				return this;
+			}
+			else{
+				errormessage=ajax_.statusText;
+				ajaxapi.catch(errormessage);
+				return this;
+			}
+		};
+		return this;
+	},
+	catch:function(e){
+		console.log(e);
 	}
+  }
 }(window));
+module.exports=ajaxapi;
 
 var genstore=(function(global,factory){
 	//Submodulo Cookies
